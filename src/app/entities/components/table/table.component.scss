@@ -1,0 +1,12 @@
+:host {
+    .main-table {
+        border: 2px solid black;
+        width: 100%;
+        
+        td, th {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+    }
+}

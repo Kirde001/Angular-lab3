@@ -1,0 +1,29 @@
+:host {
+
+    main {
+        display: grid; // на будущее
+        grid-template-columns: 20% 80%;
+        //text-align: center;
+    }
+
+    .form {
+
+        background-color: rgb(214, 187, 187);
+        text-align: center; // поправить 
+        //position: relative;
+        //width: 300px;
+        //height: 400px;
+    }
+
+    .another {
+        background-color: aqua;
+    }
+
+    .filter {
+        background-color: bisque;
+    }
+
+    .form2 {
+        background-color: rgb(146, 25, 100);
+    }
+}

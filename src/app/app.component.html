@@ -1,16 +1,20 @@
-<router-outlet>ff</router-outlet>
-<nav>
-  <a class="button"
+
+<header> 
+  <nav>
+    <a class="button"
+    
+    routerLinkActive="activebutton"
+    ariaCurrentWhenActive="page"
   
-  routerLinkActive="activebutton"
-  ariaCurrentWhenActive="page"
+    routerLink="/main">Crisis Center</a>|
+  
+    <a class="button" 
+  
+    routerLinkActive="activebutton"
+    ariaCurrentWhenActive="page"
+  
+    routerLink="/table">Heroes</a>
+  </nav>
+</header>
 
-  routerLink="/test">Crisis Center</a>|
-
-  <a class="button" 
-
-  routerLinkActive="activebutton"
-  ariaCurrentWhenActive="page"
-
-  routerLink="/test2">Heroes</a>
-</nav>
+<router-outlet></router-outlet>

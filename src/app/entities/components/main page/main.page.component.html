@@ -84,7 +84,7 @@
                     type="number"/>
 
                 </mat-form-field>
-                <span>до </span>
+                <span> до </span>
                 <mat-form-field class="ff">
                     <input matInput
                     formControlName="number2"
@@ -125,7 +125,10 @@
                 <mat-form-field class="ff1">
                     <input matInput
                     formControlName="nameSearch"
-                    type="text"/>
+                    type="text"
+                    
+                    
+                    id="1"/>
                 </mat-form-field>
 
             </div>
@@ -137,7 +140,9 @@
 
             <div class="inside">
                 <mat-form-field class="ff1">
-                    <mat-select formControlName="byMethod">
+                    <mat-select formControlName="byMethod"
+                    
+                    (selectionChange)="onSortChange($event.value)">
                         <mat-option value="descending">
                             <span>По убыванию</span>
                         </mat-option>
@@ -159,7 +164,8 @@
         </div>
 
         <div class="card">
-            <mat-accordion *ngFor="let item of arr" class="acc">
+            <mat-accordion *ngFor="let item of arr" 
+            class="acc">
                 <mat-expansion-panel (opened)="panelOpenState = true"
                                     (closed)="panelOpenState = false">
                     <mat-expansion-panel-header>

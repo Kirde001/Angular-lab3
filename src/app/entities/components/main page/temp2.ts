@@ -14,12 +14,13 @@ export class heroFormServiceSEC {
   public createHero2 (data?: IAmRealHero): FormGroup {
     return this._formBuilder.group({
 
-        number1: new FormControl(1),
-        number2: new FormControl(10),
+        number1: new FormControl(''),
+        number2: new FormControl(''),
         skill: new FormControl(''),
-        nameSearch: new FormControl('Кирилл Поляков'),
+        nameSearch: new FormControl(''),
         byMethod: new FormControl('ascending'),
+
     });
   }
-  
+
 }

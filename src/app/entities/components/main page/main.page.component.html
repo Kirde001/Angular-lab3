@@ -1,109 +1,188 @@
 
 <main>
 
-    <div>
+    <div class="form">
         <form [formGroup]="heroForm">
-        <div class = 'form'> 
-            <h1>BLOCK 1</h1>
-            
+            <div class="mainFORM">
+                <h1>Создание героя</h1>
 
                 <mat-form-field class="form-formatting">
                     <mat-label>Имя</mat-label>
                     <input matInput
-                           formControlName="name"
-                           type="text"/>
+                        formControlName="name"
+                        type="text"/>
                 </mat-form-field>
     
                 <mat-form-field class="form-formatting">
                     <mat-label>Сила</mat-label>
                     <input matInput 
-                           [min] = 1
-                           [max] = 10
-                           formControlName="strength"
-                           type="number"/>
+                        [min] = 1
+                        [max] = 10
+                        formControlName="strength"
+                        type="number"/>
                 </mat-form-field>
     
                 <mat-form-field class="form-formatting">
                     <mat-label>Способности</mat-label>
-                    <mat-select formControlName="skills">
-                        <mat-option value="gg">
-                            gg
-                        </mat-option>
+                    <mat-select formControlName="skills" multiple>
                         <mat-option *ngFor="let item of skills" [value]="item">
                             {{ item }}
                         </mat-option>
-
-
                     </mat-select>
                 </mat-form-field>
     
                 <mat-form-field class="form-formatting">
                     <mat-label>Уровень</mat-label>
                     <input matInput 
-                           formControlName="level"
-                           [min] = 1
-                           [max] = 10
-                           type="number"/>
+                        formControlName="level"
+                        [min] = 1
+                        [max] = 10
+                        type="number"/>
                 </mat-form-field>
 
+                <br>
     
-            <button (click)="onOkClick()"
-            mat-button 
-            class="dialog-accept">Сохранить</button>
-        </div>
-
-        <div class = 'form2'>
-            <h1> BLOCK 2</h1>
-            <mat-form-field class="form-formatting">
-                <mat-label>Добавлнение способностей</mat-label>
-                <input matInput
-                       formControlName="newSkills"
-                       type="text"/>
-            </mat-form-field>
-
-            <button (click)="onOkClickSkills()"
-            mat-button 
-            class="dialog-accept">Сохранить</button>
-        </div>
-
-    </form>
+                <button (click)="onOkClick()"
+                        mat-button 
+                        class="accept">Создать героя</button>
+            </div>
+            
+            <div class = 'form2'>
+                <h1>Добавить способность</h1>
+                <mat-form-field class="form-formatting">
+                    <mat-label>Добавление способностей</mat-label>
+                    <input matInput
+                        formControlName="newSkills"
+                        type="text"/>
+                </mat-form-field>
+                <br>
+                <button (click)="onOkClickSkills()"
+                        mat-button 
+                        class="accept">Добавить способность</button>
+            </div>
+        </form>
     </div>
 
-    <div>
+    <div class="second">
+        <form [formGroup]="heroForm2">
         <div class = "filter">
+
             <div class = "inside">
-                <p>Уровень героя: </p>
+                <p>
+                    <span>Уровень героя: </span>
+                </p>
+            </div>
+
+            <div class = "inside">
+                <span>от </span>
+                <mat-form-field class="ff">
+                <input matInput
+                formControlName="number1"
+                
+                    [min] = 1
+                    [max] = 10
+                    type="number"/>
+
+                </mat-form-field>
+                <span>до </span>
+                <mat-form-field class="ff">
+                    <input matInput
+                    formControlName="number2"
+                 
+                        [min] = 1
+                        [max] = 10
+                        type="number"/>
+                    </mat-form-field>
+            </div>
+
+
+            <div class = "inside">
+                <p>
+                    <span>Способности: </span>
+                </p>
+            </div>
+
+
+            <div class="inside">
+                <mat-form-field class="ff1">
+                    <mat-select multiple
+                    formControlName="skill">
+                        <mat-option *ngFor="let item of skills" [value]="item">
+                            {{ item }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+
+            <div class = "inside">
+                <p>
+                    <span>Поиск по имени: </span>
+                </p>
+            </div>
+
+            <div class="inside">
+                <mat-form-field class="ff1">
+                    <input matInput
+                    formControlName="nameSearch"
+                    type="text"/>
+                </mat-form-field>
+
             </div>
             <div class = "inside">
-                <p>Способности </p>
+                <p>
+                    <span>Сортировка по уровню: </span>
+                </p>
             </div>
-            <div class = "inside">
-                <p>Поиск по имени: </p>
-            </div>
-            <div class = "inside">
-                <p>Сортировка по уровню: </p>
+
+            <div class="inside">
+                <mat-form-field class="ff1">
+                    <mat-select formControlName="byMethod">
+                        <mat-option value="descending">
+                            <span>По убыванию</span>
+                        </mat-option>
+                        <mat-option value="ascending">
+                            <span>По возрастанию</span>
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
             </div>
 
         </div>
     
         <div class = "another">
-            <h1>BLOCK 4</h1>
+
+            <div class="back">
+                <h1>Карточки героев</h1>
+            </div>
             
-            <mat-accordion>
+        </div>
+
+        <div class="card">
+            <mat-accordion *ngFor="let item of arr" class="acc">
                 <mat-expansion-panel (opened)="panelOpenState = true"
                                     (closed)="panelOpenState = false">
                     <mat-expansion-panel-header>
                         <mat-panel-title>
-                            Self aware panel
+                            <span>Имя: {{ item.name }}</span>
                         </mat-panel-title>
-                        <mat-panel-description>
-                            Currently I am {{panelOpenState ? 'open' : 'closed'}}
-                        </mat-panel-description>
                     </mat-expansion-panel-header>
-                    <p>I'm visible because I am open</p>
+                    <p>
+                        <span>Уровень: {{ item.level }}</span>
+                    </p>
+                    <p>
+                        <span>Способности: {{ item.skills }}</span>
+                    </p>
+                    <p>
+                        <span>Сила: {{ item.strength }}</span>
+                    </p>
+
+                    <button (click)="deleteItem(item)"
+                            class="delete-button"> DELETE </button>
                 </mat-expansion-panel>
             </mat-accordion>
         </div>
+    </form>
     </div>
 
 </main>

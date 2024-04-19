@@ -8,6 +8,8 @@ import { heroFormService } from './temp';
 
 import { INITIAL_DATA } from '../../const/table.const';
 
+import { heroFormServiceSEC } from './temp2';
+
 @Component({
   selector: 'app-test',
   templateUrl: './main.page.component.html',
@@ -16,16 +18,25 @@ import { INITIAL_DATA } from '../../const/table.const';
 export class MainPageComponent {
   
   public heroForm: FormGroup;
+  public heroForm2: FormGroup;
 
-  public skills: string[] = []
+  public skills: string[] = [
+    'Поныл и забыл',
+    'Лень ',
+    'Несмешной',
+    'Почти 20 лет',
+    'Literally him'
+  ]
 
   public arr: IAmRealHero[] = INITIAL_DATA
   panelOpenState = false;
   
   constructor(
     private readonly _formBuilder: heroFormService,
+    private readonly _formBuilder2: heroFormServiceSEC,
   ) {
     this.heroForm = this._formBuilder.createHero();
+    this.heroForm2 = this._formBuilder2.createHero2();
   }
 
   public onOkClick(): void {
@@ -34,9 +45,16 @@ export class MainPageComponent {
     }
   }
 
-  public onOkClickSkills(): void {
+  public onOkClickSkills(): void { //хм мб тоже оптим нужен, но пока так.
     console.log(this.heroForm.value.newSkills)
     this.skills.push(this.heroForm.value.newSkills);
+  }
+
+  public deleteItem(item: IAmRealHero) { //вынести? и из таблы тогда 
+    const index = this.arr.findIndex((existingItem) => existingItem === item);
+    if (index > -1) {
+      this.arr.splice(index, 1);
+    }
   }
 
 

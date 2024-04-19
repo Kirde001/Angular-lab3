@@ -2,9 +2,10 @@
 <main>
 
     <div>
-        <h1>Добавление ауцмутмш</h1>
+        <form [formGroup]="heroForm">
         <div class = 'form'> 
-            <form [formGroup]="heroForm">
+            <h1>BLOCK 1</h1>
+            
 
                 <mat-form-field class="form-formatting">
                     <mat-label>Имя</mat-label>
@@ -25,10 +26,14 @@
                 <mat-form-field class="form-formatting">
                     <mat-label>Способности</mat-label>
                     <mat-select formControlName="skills">
-                        <mat-option value="IMAX">IMAX</mat-option>
-                        <mat-option value="VIP">VIP</mat-option>
-                        <mat-option value="YAN">РГУ</mat-option>
-                        <mat-option value="KIRAKOS">KIRAKOS</mat-option>
+                        <mat-option value="gg">
+                            gg
+                        </mat-option>
+                        <mat-option *ngFor="let item of skills" [value]="item">
+                            {{ item }}
+                        </mat-option>
+
+
                     </mat-select>
                 </mat-form-field>
     
@@ -40,28 +45,64 @@
                            [max] = 10
                            type="number"/>
                 </mat-form-field>
-            </form>
+
     
             <button (click)="onOkClick()"
             mat-button 
-            cdkFocusInitial 
             class="dialog-accept">Сохранить</button>
         </div>
 
         <div class = 'form2'>
-            еще че-то здесьб
+            <h1> BLOCK 2</h1>
+            <mat-form-field class="form-formatting">
+                <mat-label>Добавлнение способностей</mat-label>
+                <input matInput
+                       formControlName="newSkills"
+                       type="text"/>
+            </mat-form-field>
+
+            <button (click)="onOkClickSkills()"
+            mat-button 
+            class="dialog-accept">Сохранить</button>
         </div>
 
+    </form>
     </div>
+
     <div>
-        <div class = 'filter'>
-            fverv4
-            <p>no chill </p>
-    
+        <div class = "filter">
+            <div class = "inside">
+                <p>Уровень героя: </p>
+            </div>
+            <div class = "inside">
+                <p>Способности </p>
+            </div>
+            <div class = "inside">
+                <p>Поиск по имени: </p>
+            </div>
+            <div class = "inside">
+                <p>Сортировка по уровню: </p>
+            </div>
+
         </div>
     
-        <div class = 'another'>
-            hthbt
+        <div class = "another">
+            <h1>BLOCK 4</h1>
+            
+            <mat-accordion>
+                <mat-expansion-panel (opened)="panelOpenState = true"
+                                    (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Self aware panel
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            Currently I am {{panelOpenState ? 'open' : 'closed'}}
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <p>I'm visible because I am open</p>
+                </mat-expansion-panel>
+            </mat-accordion>
         </div>
     </div>
 

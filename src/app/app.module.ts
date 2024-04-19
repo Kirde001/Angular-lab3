@@ -19,6 +19,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { MatButtonModule } from '@angular/material/button';
 
+import {MatExpansionModule} from '@angular/material/expansion';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +43,7 @@ import { MatButtonModule } from '@angular/material/button';
     ReactiveFormsModule,
 
     MatButtonModule,
+    MatExpansionModule,
 
   ],
   providers: [ provideRouter(routes)],

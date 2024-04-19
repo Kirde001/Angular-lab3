@@ -1,9 +1,12 @@
 :host {
 
+
     main {
         display: grid; // на будущее
         grid-template-columns: 20% 80%;
         //text-align: center;
+        // padding: 0;
+        // margin: 0;
     }
 
     .form {
@@ -21,9 +24,22 @@
 
     .filter {
         background-color: bisque;
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-template-rows: 60px 60px ;
+
     }
 
     .form2 {
         background-color: rgb(146, 25, 100);
     }
+
+    .inside {
+        margin-left: 10px;
+    }
+
+    // .form-formatting {
+    //     text-align: center;
+
+    // }
 }

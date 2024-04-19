@@ -20,6 +20,8 @@ export class heroFormService {
       strength: new FormControl(1, Validators.required),
       level: new FormControl(1, Validators.required),
       skills: new FormControl('', Validators.required),
+
+      newSkills: new FormControl(''),
     });
   }
 }

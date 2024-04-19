@@ -6,7 +6,6 @@ import { IAmRealHero } from '../../interfaces/hero.interface';
 
 import { heroFormService } from './temp';
 
-
 import { INITIAL_DATA } from '../../const/table.const';
 
 @Component({
@@ -18,8 +17,11 @@ export class MainPageComponent {
   
   public heroForm: FormGroup;
 
-  public arr: IAmRealHero[] = INITIAL_DATA
+  public skills: string[] = []
 
+  public arr: IAmRealHero[] = INITIAL_DATA
+  panelOpenState = false;
+  
   constructor(
     private readonly _formBuilder: heroFormService,
   ) {
@@ -30,6 +32,11 @@ export class MainPageComponent {
     if (this.heroForm.valid) {
       this.arr.push(this.heroForm.value);
     }
+  }
+
+  public onOkClickSkills(): void {
+    console.log(this.heroForm.value.newSkills)
+    this.skills.push(this.heroForm.value.newSkills);
   }
 
 

@@ -31,32 +31,22 @@ export class MainPageComponent {
   public arr: IAmRealHero[] = INITIAL_DATA
 
   filteredArr = this.arr;
-  selectedSortMethod = 'ascending';
-////////////////
-    // Function to handle name search
+  sortBy = 'ascending';
 
-    // onSearchName(event: any) {
-    //   const inputElement = event.target as HTMLInputElement; // Typecast to HTMLInputElement
-    //   const searchText = inputElement.value.toLowerCase();
-    //   this.filteredArr = this.arr.filter(item => item.name.toLowerCase().includes(searchText));
-    // }
-    
-    // Function to handle sort selection
     onSortChange(method: string) {
-      this.selectedSortMethod = method;
+      this.sortBy = method;
       this.sortData();
     }
-  
-    // Function to sort data based on selected method
+
     sortData() {
-      if (this.selectedSortMethod === 'ascending') {
+      if (this.sortBy === 'ascending') {
         this.filteredArr.sort((a, b) => a.level - b.level);
       } else {
         this.filteredArr.sort((a, b) => b.level - a.level);
       }
     }
 
-    ///
+  
   panelOpenState = false;
   
   constructor(

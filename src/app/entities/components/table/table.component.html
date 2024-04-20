@@ -1,23 +1,19 @@
 <table class="main-table">
-    <tr>
-      <th>Имя</th>
-      <th>Уровень</th>
-      <th>Сила</th>
-      <th>Способности</th>
-      <th>Удаление</th>
-    </tr>
-      <tr *ngFor="let item of items">
-        <td>{{ item.name }}</td>
-        <td>{{ item.level }}</td>
-        <td>{{ item.strength }}</td>
-        <td>{{ item.skills }}</td>
-        <td>
-            <button (click)="deleteItem(item)"
-                    class="delete-button">
-                    DELETE
-              <!-- <img src="\assets\images\basket.png"
-                   class="trash-bin"> -->
-          </button>
-        </td>
-      </tr> 
-  </table>
+  <tr>
+    <th>Имя</th>
+    <th>Уровень</th>
+    <th>Сила</th>
+    <th>Способности</th>
+    <th>Удаление</th>
+  </tr>
+  <tr *ngFor="let item of items">
+    <td>{{ item.name }}</td>
+    <td>{{ item.level }}</td>
+    <td>{{ item.strength }}</td>
+    <td>{{ item.skills }}</td>
+    <td>
+      <button (click)="deleteItem(item)" 
+              class="delete-button">Удалить</button>
+    </td>
+  </tr>
+</table>

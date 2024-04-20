@@ -3,7 +3,7 @@ import {
   FormControl,
   FormGroup,
   FormBuilder,
-  Validators,
+  Validators
 } from '@angular/forms';
 import { IAmRealHero } from '../../interfaces/hero.interface';
 
@@ -11,7 +11,7 @@ import { IAmRealHero } from '../../interfaces/hero.interface';
 export class heroFormService {
   constructor(private readonly _formBuilder: FormBuilder) {}
 
-  public createHero (data?: IAmRealHero): FormGroup {
+  public createHero(data?: IAmRealHero): FormGroup {
     return this._formBuilder.group({
       name: new FormControl('', [
         Validators.required,
@@ -20,7 +20,6 @@ export class heroFormService {
       strength: new FormControl(1, Validators.required),
       level: new FormControl(1, Validators.required),
       skills: new FormControl('', Validators.required),
-
       newSkills: new FormControl(''),
     });
   }

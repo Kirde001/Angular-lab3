@@ -1,102 +1,86 @@
 :host {
-    
-    .accept {
-        color: white;
-        border: 2px solid white;
-        margin-bottom: 10px;
-    }
-
-    .form-formatting{
-        width: 250px;
-        text-align: left;
-
-    }
-
-    .mainFORM {
-        background-color: black;
-        border-radius: 30px 50px 50px 100px;
-    }
-
-    .form2 {
-        background-color: black;
-        margin-top: 60px;
-
-        border-radius: 30px 50px 50px 100px;
-    }
 
     main {
-        display: grid; 
+        display: grid;
         grid-template-columns: 20% 80%;
         margin: 15px;
-    }
 
-    .form {
-        position: relative;
-        bottom: 21px;
-        
-        text-align: center; 
-        color: white;
-    }
+        .form {
+            position: relative;
+            bottom: 21px;
+            text-align: center;
+            color: white;
+            
+            .form-formatting {
+                width: 250px;
+                text-align: left;
+            }
+            
+            .accept {
+                color: white;
+                border: 2px solid white;
+                margin-bottom: 10px;
+            }
+            
+            .main-form{
+                background-color: black;
+                border-radius: 30px 50px 50px 100px;
+            }
+            
+            .skill-form {
+                background-color: black;
+                margin-top: 60px;
+                border-radius: 30px 50px 50px 100px;
+            }
+        }
 
-    .another {
-        
-        background-color: black;
-        color: white;
+        .second-grid {
+            margin-left: 100px;
+            margin-right: 40px;
 
-        margin-top: 15px;
-        text-align: center;
-        border: 2px solid black;
+            .filter {
+                background-color: black;
+                height: 154px;
+                font-size: 20px;
+                display: grid;
+                grid-template-columns: 25% 25% 25% 25%;
+                grid-template-rows: 77px 77px;
+                color: white;
+                border: 2px solid black;
+                border-radius: 30px;
 
-        border-radius: 30px 50px 50px 100px;
-    }
+                .inside {
+                    margin-left: 15px;
 
-    .filter {
-        background-color: black;
+                    .filter-number {
+                        width: 100px;
+                        margin-top: 10px;
+                    }     
+                    
+                    .filter-other {
+                        margin-top: 10px;
+                        width: 250px;
+                    }
+                }            
+            }
 
+            .title {
+                background-color: black;
+                color: white;
+                margin-top: 15px;
+                text-align: center;
+                border: 2px solid black;
+                border-radius: 30px 50px 50px 100px;
+            }
 
-        height: 154px;
-        font-size: 20px;
+            .cards {
+                margin-top: 20px;
+                margin-bottom: 100px;
 
-        display: grid;
-        grid-template-columns: 25% 25% 25% 25%;
-        grid-template-rows: 77px 77px ;
-
-        color: white;
-        
-        border: 2px solid black;
-
-        border-radius: 30px;
-    }
-
-
-    .inside {
-        margin-left: 15px;
-
-    }
-
-
-    .second {
-        margin-left: 100px;
-        margin-right: 40px;
-        
-    }
-
-    .card {
-        margin-top: 20px;
-        margin-bottom: 100px;
-    }
-
-    .acc {
-        margin: 10px;
-    }
-
-    .ff {
-        width: 100px;
-        margin-top: 10px;
-    }
-
-    .ff1 {
-        margin-top: 10px;
-        width: 250px;
+                .accordion {
+                    margin: 10px;
+                }
+            }
+        }    
     }
 }

@@ -10,6 +10,8 @@ import { INITIAL_DATA } from '../../const/table.const';
 
 import { filtrationFormService } from './filtration-form-builder.service.ts';
 
+import { HeroService } from '../../service/hero-storage.service';
+
 @Component({
   selector: 'app-test',
   templateUrl: './main.page.component.html',
@@ -35,10 +37,12 @@ export class MainPageComponent {
 
   constructor(
     private readonly _formBuilder: heroFormService,
-    private readonly _formBuilder2: filtrationFormService
+    private readonly _formBuilder2: filtrationFormService,
+    private readonly _heroService: HeroService,
   ) {
     this.heroForm = this._formBuilder.createHero(); // не сказать, что я оригинальный
     this.heroForm2 = this._formBuilder2.createHero2();
+    this.arr = this._heroService.heroes;
   }
 
   filterByName(searchTerm: string): IAmRealHero[] {
@@ -67,10 +71,11 @@ export class MainPageComponent {
   public onOkClick(): void {
     if (this.heroForm.valid) {
       const newHero = { ...this.heroForm.value };
+      this._heroService.addHero(newHero); 
       this.arr = this.arr.concat(newHero);
     }
   }
-
+    
   public onOkClickSkills(): void {
     //хм мб тоже оптим нужен, но пока так.
     this.skills.push(this.heroForm.value.newSkills);
@@ -79,8 +84,9 @@ export class MainPageComponent {
   public deleteItem(item: IAmRealHero): void {
     //вынести? и из таблы тогда
     const index: number = this.arr.findIndex((existingItem: IAmRealHero) => existingItem === item);
-    if (index > -1) {
-      this.arr.splice(index, 1);
-    }
+    const copy = [...this.arr]; 
+    copy.splice(index, 1);
+    this.arr = copy;
+    this._heroService.removeHero(item); 
   }
 }

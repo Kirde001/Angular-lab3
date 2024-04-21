@@ -7,11 +7,11 @@ import { IAmRealHero } from '../interfaces/hero.interface';
   })
   export class FilterByLevelPipe implements PipeTransform {
   
-    transform(data: IAmRealHero[], filterData: { number1: number, number2: number }): IAmRealHero[] {
-      if (!data || !filterData) {
+    public transform(data: IAmRealHero[], levelFilter: { number1: number, number2: number }): IAmRealHero[] {
+      if (!levelFilter) {
         return data;
       }
-      const { number1: minLevel, number2: maxLevel } = filterData;
+      const { number1: minLevel, number2: maxLevel } = levelFilter;
       return data.filter(hero => hero.level >= minLevel && hero.level <= maxLevel);
     }
   }

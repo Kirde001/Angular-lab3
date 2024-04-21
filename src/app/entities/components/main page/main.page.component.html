@@ -129,9 +129,23 @@
             <h1>Карточки героев</h1>
         </div>
         <div class="cards">
-            <mat-accordion *ngFor="let item of arr| filterByLevel : heroForm2.value| filterBySkill : heroForm2.get('skill')?.value| filterByName : heroForm2.get('nameSearch')?.value"
+
+            <!-- *ngFor="let item of arr| filterByLevel : heroForm2.value | filterBySkill : heroForm2.get('skill')?.value| filterByName : heroForm2.get('nameSearch')?.value" 
+            старый вариант на три кастомки -- оптимизировал, тскать 
+
+            filterBy: ['name']: heroForm2.get('nameSearch')?.value 
+            тоже можно, но есть нюансы 
+
+            пока использую совмещенный вариант с установленным и с кастомками upd я ушел с него сразу же, хотя для других нормальная тема будет 
+
+            *ngFor="let item of arr | filterBy: ['skills']: heroForm2.get('skill')?.value | filterByLevel : heroForm2.value | filterByName : heroForm2.get('nameSearch')?.value"
+            нет обновления, а мне лень его делать 
+            в кастомках там кншн возврат датки есть, а через ngx-pipes - нет 
+            раз уж писал их, с ними и останусь -->
+
+            <mat-accordion *ngFor="let item of arr| filterByLevel : heroForm2.value | filterBySkill : heroForm2.get('skill')?.value| filterByName : heroForm2.get('nameSearch')?.value" 
                             class="accordion">
-                <mat-expansion-panel (opened)="panelOpenState = true"
+                <mat-expansion-panel (opened)="panelOpenState = true" 
                                     (closed)="panelOpenState = false">
                     <mat-expansion-panel-header>
                         <mat-panel-title>

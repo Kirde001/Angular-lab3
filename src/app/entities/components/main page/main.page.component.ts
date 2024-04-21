@@ -15,6 +15,7 @@ import { filtrationFormService } from './filtration-form-builder.service.ts';
   templateUrl: './main.page.component.html',
   styleUrls: ['./main.page.component.scss'],
 })
+
 export class MainPageComponent {
   private _sortBy: string = 'ascending';
   public heroForm: FormGroup;
@@ -22,8 +23,9 @@ export class MainPageComponent {
   public skills: string[] = [
     //для лени добавлю начальные скиллы
     'Поныл и забыл',
-    'Лень',
-    'Несмешной',
+    'Зол',
+    'Это потому что я рыжий?',
+    'Биг Бро',
     'Почти 20 лет',
     'Literally him',
     'АСУ',
@@ -76,7 +78,7 @@ export class MainPageComponent {
 
   public deleteItem(item: IAmRealHero): void {
     //вынести? и из таблы тогда
-    const index = this.arr.findIndex((existingItem) => existingItem === item);
+    const index: number = this.arr.findIndex((existingItem: IAmRealHero) => existingItem === item);
     if (index > -1) {
       this.arr.splice(index, 1);
     }

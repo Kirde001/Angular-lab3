@@ -18,9 +18,11 @@ import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { FilterByLevelPipe } from './entities/pipe/method.pipe';
-import { FilterByNamePipe } from './entities/pipe/name.pipe';
-import { FilterBySkillPipe } from './entities/pipe/skills.pipe';
+import { FilterByLevelPipe } from './entities/pipe/filter-by-level.pipe';
+import { FilterByNamePipe } from './entities/pipe/filter-by-name.pipe';
+import { FilterBySkillPipe } from './entities/pipe/filter-by-skill.pipe';
+
+import { NgArrayPipesModule } from 'ngx-pipes';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { FilterBySkillPipe } from './entities/pipe/skills.pipe';
     ReactiveFormsModule,
     MatButtonModule,
     MatExpansionModule,
+
+    NgArrayPipesModule,
   ],
   providers: [provideRouter(routes)],
   bootstrap: [AppComponent],

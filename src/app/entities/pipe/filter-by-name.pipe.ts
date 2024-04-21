@@ -6,21 +6,20 @@ import { IAmRealHero } from '../interfaces/hero.interface';
   name: 'filterByName',
 })
 export class FilterByNamePipe implements PipeTransform {
-  transform(data: IAmRealHero[], nameFilter: string): IAmRealHero[] {
-    if (!data || !nameFilter) {
+  public transform(data: IAmRealHero[], nameFilter: string): IAmRealHero[] {
+    if (!nameFilter) {
       return data; 
     }
-    const filterValue = nameFilter || '';
-
-    if (filterValue.length < 3) {
+  
+    if (nameFilter.length < 3) {
       return data; 
     }
 
-    const lowercaseFilter = filterValue.toLowerCase();
+    const nameFilterLower = nameFilter.toLowerCase();
 
     return data.filter((hero: IAmRealHero) => {
-      const heroNameLowercase = hero.name.toLowerCase();
-      return heroNameLowercase.includes(lowercaseFilter);
+      const heroNameLower = hero.name.toLowerCase();
+      return heroNameLower.includes(nameFilterLower);
     });
   }
 }

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { IAmRealHero } from '../interfaces/hero.interface';
-
 import { INITIAL_DATA } from '../const/table.const';
 
 @Injectable({
@@ -17,8 +16,17 @@ export class HeroService {
   get heroes(): IAmRealHero[] {
     return this._heroes;
   }
+
   get skills(): string[] {
     return this._skills;
+  }
+
+  public sortData(method): void {
+    if (method === 'ascending') {
+      this._heroes.sort((a, b) => a.level - b.level);
+    } else {
+      this._heroes.sort((a, b) => b.level - a.level);
+    }
   }
 
   public addHero(newHero: IAmRealHero): void {
@@ -29,4 +37,5 @@ export class HeroService {
     const index: number = this._heroes.findIndex((existingHero: IAmRealHero) => existingHero === hero);
     this._heroes.splice(index, 1);
   }
+
 }

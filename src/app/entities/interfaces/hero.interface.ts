@@ -3,5 +3,4 @@ export interface IAmRealHero {
     level: number;
     strength: number;
     skills: string[];
-    newSkills: string;
 }

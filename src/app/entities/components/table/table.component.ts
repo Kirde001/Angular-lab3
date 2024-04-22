@@ -23,7 +23,7 @@ export class TableComponent {
     private readonly _destroyRef: DestroyRef
   ) {
     this.items = this._heroService.heroes; 
-    
+    this._heroService.sortData('ascending');
   }
 
   public deleteItem(item: IAmRealHero): void {
@@ -38,8 +38,7 @@ export class TableComponent {
         name: currItem.name,
         level: currItem.level,
         strength: currItem.strength,
-        skills: currItem.skills,
-        newSkills: currItem.newSkills
+        skills: currItem.skills
       }
     });
     dialogRef

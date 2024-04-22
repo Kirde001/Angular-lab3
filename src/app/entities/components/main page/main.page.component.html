@@ -34,7 +34,7 @@
                            type="number"/>
                 </mat-form-field>
                 <br/>
-                <button (click)="onOkClick()" 
+                <button (click)="onOkClick(); onSortChange('ascending');" 
                         mat-button 
                         class="accept">Создать героя</button>
             </div>

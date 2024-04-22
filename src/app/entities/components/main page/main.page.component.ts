@@ -11,7 +11,7 @@ import { HeroService } from '../../service/hero-lib.service';
 })
 
 export class MainPageComponent {
-  private _sortBy: string = 'ascending';
+
   public heroForm: FormGroup;
   public filterForm: FormGroup;
   public skillsForm: FormGroup;
@@ -28,6 +28,7 @@ export class MainPageComponent {
     this.skillsForm = this._formBuilder.createSkill();
     this.arr = this._heroService.heroes;
     this.skills = this._heroService.skills;
+    this._heroService.sortData('ascending');
   }
 
   public filterByName(searchTerm: string): IAmRealHero[] {
@@ -37,16 +38,8 @@ export class MainPageComponent {
   }
 
   public onSortChange(method: string): void {
-    this._sortBy = method;
-    this._sortData();
-  }
-
-  private _sortData(): void {
-    if (this._sortBy === 'ascending') {
-      this.arr.sort((a, b) => a.level - b.level);
-    } else {
-      this.arr.sort((a, b) => b.level - a.level);
-    }
+    this._heroService.sortData(method);
+    this.arr = this._heroService.heroes;
   }
 
   // this.arr.push(this.heroForm.value); - не обновляет, нужно найти иной способ

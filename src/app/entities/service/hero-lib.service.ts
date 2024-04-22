@@ -8,17 +8,25 @@ import { INITIAL_DATA } from '../const/table.const';
 })
 export class HeroService {
   private _heroes: IAmRealHero[] = INITIAL_DATA;
+  private _skills: string[] = [
+    'Поныл и забыл',
+    'Зол',
+    'Повторение способностей для тестов',
+  ];
 
   get heroes(): IAmRealHero[] {
     return this._heroes;
   }
+  get skills(): string[] {
+    return this._skills;
+  }
 
-  addHero(newHero: IAmRealHero): void {
+  public addHero(newHero: IAmRealHero): void {
     this._heroes = this._heroes.concat(newHero);
   }
 
-  removeHero(hero: IAmRealHero): void {
-    const index = this._heroes.findIndex((existingHero) => existingHero === hero);
+  public removeHero(hero: IAmRealHero): void {
+    const index: number = this._heroes.findIndex((existingHero: IAmRealHero) => existingHero === hero);
     this._heroes.splice(index, 1);
   }
 }

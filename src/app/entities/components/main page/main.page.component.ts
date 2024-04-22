@@ -1,16 +1,8 @@
 import { Component } from '@angular/core';
-
 import { FormGroup } from '@angular/forms';
-
 import { IAmRealHero } from '../../interfaces/hero.interface';
-
-import { heroFormService } from './hero-form-builder.service.ts';
-
-import { INITIAL_DATA } from '../../const/table.const';
-
-import { filtrationFormService } from './filtration-form-builder.service.ts';
-
-import { HeroService } from '../../service/hero-storage.service';
+import { MainFormService } from './main-form-builder.service.ts';
+import { HeroService } from '../../service/hero-lib.service';
 
 @Component({
   selector: 'app-test',
@@ -21,34 +13,27 @@ import { HeroService } from '../../service/hero-storage.service';
 export class MainPageComponent {
   private _sortBy: string = 'ascending';
   public heroForm: FormGroup;
-  public heroForm2: FormGroup;
-  public skills: string[] = [
-    //для лени добавлю начальные скиллы
-    'Поныл и забыл',
-    'Зол',
-    'Это потому что я рыжий?',
-    'Биг Бро',
-    'Почти 20 лет',
-    'Literally him',
-    'АСУ',
-  ];
-  public arr: IAmRealHero[] = INITIAL_DATA;
+  public filterForm: FormGroup;
+  public skillsForm: FormGroup;
+  public skills: string[];
+  public arr: IAmRealHero[];
   public panelOpenState: Boolean = false;
 
   constructor(
-    private readonly _formBuilder: heroFormService,
-    private readonly _formBuilder2: filtrationFormService,
+    private readonly _formBuilder: MainFormService,
     private readonly _heroService: HeroService,
   ) {
-    this.heroForm = this._formBuilder.createHero(); // не сказать, что я оригинальный
-    this.heroForm2 = this._formBuilder2.createHero2();
+    this.heroForm = this._formBuilder.createHero();
+    this.filterForm = this._formBuilder.createFilter();
+    this.skillsForm = this._formBuilder.createSkill();
     this.arr = this._heroService.heroes;
+    this.skills = this._heroService.skills;
   }
 
-  filterByName(searchTerm: string): IAmRealHero[] {
+  public filterByName(searchTerm: string): IAmRealHero[] {
     return this.arr.filter((hero) =>
       hero.name.toLowerCase().includes(searchTerm.toLowerCase())
-    ); // офк все в нижнем регистре
+    ); 
   }
 
   public onSortChange(method: string): void {
@@ -71,18 +56,30 @@ export class MainPageComponent {
   public onOkClick(): void {
     if (this.heroForm.valid) {
       const newHero = { ...this.heroForm.value };
-      this._heroService.addHero(newHero); 
       this.arr = this.arr.concat(newHero);
+      this._heroService.addHero(newHero); 
+      this.heroForm.reset({
+        level: 1,
+        strength: 1,
+      });
     }
   }
     
   public onOkClickSkills(): void {
-    //хм мб тоже оптим нужен, но пока так.
-    this.skills.push(this.heroForm.value.newSkills);
+    if (this.skillsForm.valid) {
+      if (this.skills.includes(this.skillsForm.value.newSkills) || this.skillsForm.value.newSkills === '') {
+        this.skillsForm.reset()
+        alert("Даже индусы не смогут добавить твою способность, дорогой друг!");
+      }
+      else {
+        this.skills.push(this.skillsForm.value.newSkills)
+        this.skillsForm.reset()
+      }
+    }
   }
 
   public deleteItem(item: IAmRealHero): void {
-    //вынести? и из таблы тогда
+    // костыли для отображения
     const index: number = this.arr.findIndex((existingItem: IAmRealHero) => existingItem === item);
     const copy = [...this.arr]; 
     copy.splice(index, 1);

@@ -21,6 +21,11 @@
         td {
             border: 1px solid #dddddd;
             padding: 5px;
+
+            .delete {
+                color: white;
+                background: #c2c2c2 linear-gradient(to bottom, #afb7c0 5%, #424e5a 100%);
+            }
         }
     }
 }

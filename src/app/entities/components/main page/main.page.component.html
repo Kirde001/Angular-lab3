@@ -38,6 +38,8 @@
                         mat-button 
                         class="accept">Создать героя</button>
             </div>
+        </form>
+        <form [formGroup]="skillsForm">
             <div class="skill-form">
                 <h1>Добавить способность</h1>
                 <mat-form-field class="form-formatting">
@@ -54,7 +56,7 @@
         </form>
     </div>
     <div class="second-grid">
-        <form [formGroup]="heroForm2">
+        <form [formGroup]="filterForm">
             <div class="filter">
                 <div class="inside">
                     <p>
@@ -65,14 +67,14 @@
                     <span>от </span>
                     <mat-form-field class="filter-number">
                         <input [min]="1"
-                            [max]="this.heroForm2.value.number2 - 1"
+                            [max]="this.filterForm.value.number2"
                             matInput
                             formControlName="number1"
                             type="number"/>
                     </mat-form-field>
                     <span> до </span>
                     <mat-form-field class="filter-number">
-                        <input [min]="this.heroForm2.value.number1 + 1"
+                        <input [min]="this.filterForm.value.number1"
                             [max]="10"
                             matInput
                             formControlName="number2"
@@ -129,7 +131,7 @@
             <h1>Карточки героев</h1>
         </div>
         <div class="cards">
-            <mat-accordion *ngFor="let item of arr | filterByLevel : heroForm2.value| filterBySkill : heroForm2.get('skill')?.value| filterByName : heroForm2.get('nameSearch')?.value"
+            <mat-accordion *ngFor="let item of arr | filterByLevel : filterForm.value| filterBySkill : filterForm.get('skill')?.value| filterByName : filterForm.get('nameSearch')?.value"
                             class="accordion">
                 <mat-expansion-panel (opened)="panelOpenState = true"
                                     (closed)="panelOpenState = false">

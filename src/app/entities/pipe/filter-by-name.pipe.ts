@@ -7,14 +7,9 @@ import { IAmRealHero } from '../interfaces/hero.interface';
 })
 export class FilterByNamePipe implements PipeTransform {
   public transform(data: IAmRealHero[], nameFilter: string): IAmRealHero[] {
-    if (!nameFilter) {
-      return data; 
-    }
-  
     if (nameFilter.length < 3) {
       return data; 
     }
-
     const nameFilterLower = nameFilter.toLowerCase();
 
     return data.filter((hero: IAmRealHero) => {

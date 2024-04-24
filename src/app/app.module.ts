@@ -23,9 +23,7 @@ import { FilterByNamePipe } from './entities/pipe/filter-by-name.pipe';
 import { FilterBySkillPipe } from './entities/pipe/filter-by-skill.pipe';
 import {MatIconModule} from '@angular/material/icon';
 import { DialogComponent } from './entities/components/dialog/dialog.component';
-
 import { MatDialogModule } from '@angular/material/dialog';
-
 
 @NgModule({
   declarations: [

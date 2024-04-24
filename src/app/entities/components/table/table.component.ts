@@ -7,7 +7,14 @@ import { MatDialog } from '@angular/material/dialog';
 import { DestroyRef } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
+
+
+
+import { BehaviorSubject, Observable } from 'rxjs';
+
 @Component({
+
+  
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss']
@@ -15,15 +22,20 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 export class TableComponent {
   
-  public items: IAmRealHero[] = [];
+  public items$: Observable<IAmRealHero[]>;
+
+
 
   constructor(
     private readonly _heroService: HeroService,
     private readonly _dialog: MatDialog,
     private readonly _destroyRef: DestroyRef
   ) {
-    this.items = this._heroService.heroes; 
+    //this.items = this._heroService.heroes; 
     this._heroService.sortData('ascending');
+
+    this.items$ = this._heroService.heroes$;
+
   }
 
   public deleteItem(item: IAmRealHero): void {
@@ -46,8 +58,9 @@ export class TableComponent {
       .pipe(takeUntilDestroyed(this._destroyRef))
       .subscribe((data: IAmRealHero) => {
         if (data) {
-          const index: number = this.items.findIndex((item: IAmRealHero) => item === currItem);
-          this.items[index] = data;
+          // const index: number = this.items$.findIndex((item: IAmRealHero) => item === currItem);
+          // this.items$[index] = data;
+          this._heroService.removeHero(data);
         }
     });
   }

@@ -4,6 +4,9 @@ import { IAmRealHero } from '../../interfaces/hero.interface';
 import { MainFormService } from './main-form-builder.service.ts';
 import { HeroService } from '../../service/hero-lib.service';
 
+import { OnInit } from '@angular/core';
+
+import { BehaviorSubject, Observable } from 'rxjs';
 @Component({
   selector: 'app-test',
   templateUrl: './main.page.component.html',
@@ -16,7 +19,9 @@ export class MainPageComponent {
   public filterForm: FormGroup;
   public skillsForm: FormGroup;
   public skills: string[];
-  public arr: IAmRealHero[];
+  //public arr: IAmRealHero[];
+
+  public arr$: Observable<IAmRealHero[]>; 
   public panelOpenState: Boolean = false;
 
   constructor(
@@ -26,35 +31,31 @@ export class MainPageComponent {
     this.heroForm = this._formBuilder.createHero();
     this.filterForm = this._formBuilder.createFilter();
     this.skillsForm = this._formBuilder.createSkill();
-    this.arr = this._heroService.heroes;
+    this.arr$ = this._heroService.heroes$;
     this.skills = this._heroService.skills;
     this._heroService.sortData('ascending');
   }
 
-  public filterByName(searchTerm: string): IAmRealHero[] {
-    return this.arr.filter((hero) =>
-      hero.name.toLowerCase().includes(searchTerm.toLowerCase())
-    ); 
-  }
-
   public onSortChange(method: string): void {
     this._heroService.sortData(method);
-    this.arr = this._heroService.heroes;
+    //this.arr = this._heroService.heroes;
   }
 
-  // this.arr.push(this.heroForm.value); - не обновляет, нужно найти иной способ
-  // дело в том, что прямой пушинг сразу кидает все в массив, но по нему не идет новая итерация из ngFor, типа такого
-  // как решение отдельная переменная для новой даты
-
   public onOkClick(): void {
+    // if (this.heroForm.valid) {
+    //   const newHero = { ...this.heroForm.value };
+    //   this.arr$ = this.arr$.concat(newHero);
+    //   this._heroService.addHero(newHero); 
+    //   this.heroForm.reset({
+    //     level: 1,
+    //     strength: 1,
+    //   });
+    // }
+
     if (this.heroForm.valid) {
       const newHero = { ...this.heroForm.value };
-      this.arr = this.arr.concat(newHero);
       this._heroService.addHero(newHero); 
-      this.heroForm.reset({
-        level: 1,
-        strength: 1,
-      });
+      this.heroForm.reset({ level: 1, strength: 1 });
     }
   }
     
@@ -69,14 +70,29 @@ export class MainPageComponent {
         this.skillsForm.reset()
       }
     }
+
+    // if (this.skillsForm.valid) {
+    //   const newSkill = this.skillsForm.value.newSkills;
+    //   if (!this.skills.includes(newSkill) && newSkill !== '') {
+    //     this._heroService.addSkill(newSkill); // Assuming addSkill in HeroService
+    //     this.skillsForm.reset();
+    //   } else {
+    //     alert("That skill already exists, or it's empty!"); // Informative message
+    //   }
+    // }
+
   }
 
   public deleteItem(item: IAmRealHero): void {
     // костыли для отображения
-    const index: number = this.arr.findIndex((existingItem: IAmRealHero) => existingItem === item);
-    const copy = [...this.arr]; 
-    copy.splice(index, 1);
-    this.arr = copy;
-    this._heroService.removeHero(item); 
+
+  //   const index: number = this.$arr.findIndex((existingItem: IAmRealHero) => existingItem === item);
+  //   const copy = [...this.$arr]; 
+  //   copy.splice(index, 1);
+  //   this.arr$ = copy;
+  //   this._heroService.removeHero(item); 
+  // }
+    this._heroService.removeHero(item);
   }
+
 }

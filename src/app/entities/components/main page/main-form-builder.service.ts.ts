@@ -10,6 +10,13 @@ import {
 export class MainFormService {
   constructor(private readonly _formBuilder: FormBuilder) {}
 
+  /**
+   * Первая форм группа 
+   * 
+   * @method createHero
+   * @return { FormGroup }
+   * @description создание форм группы для добавления героя с соответствующим названием + немного валидации
+   */
   public createHero(): FormGroup {
     return this._formBuilder.group({
       name: new FormControl('', [
@@ -22,6 +29,13 @@ export class MainFormService {
     });
   }
 
+  /**
+   * Вторая форм группа 
+   * 
+   * @method createSkill
+   * @return { FormGroup }
+   * @description для добавления новых способностей с определенным паттерном и валидацией
+   */
   public createSkill(): FormGroup {
     return this._formBuilder.group({
       newSkills: new FormControl('', [
@@ -31,6 +45,13 @@ export class MainFormService {
     });
   }
 
+  /**
+   * Третья форм группа 
+   * 
+   * @method createFilter
+   * @return { FormGroup }
+   * @description для привязки инпутов с фильтрацией с фильтрационной логикой в пайпах
+   */
   public createFilter(): FormGroup {
     return this._formBuilder.group({
       number1: new FormControl(1),

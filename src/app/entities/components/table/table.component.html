@@ -4,20 +4,13 @@
     <th>Уровень</th>
     <th>Сила</th>
     <th>Способности</th>
-    <th>Редактирование</th>
     <th>Удаление</th>
   </tr>
-  <tr *ngFor="let item of items$ | async">
+  <tr *ngFor="let item of items | async">
     <td>{{ item.name }}</td>
     <td>{{ item.level }}</td>
     <td>{{ item.strength }}</td>
     <td>{{ item.skills.join(', ') }}</td>
-    <td>
-      <button (click)="onChange(item)" 
-              class="delete">
-        <mat-icon>edit</mat-icon>
-      </button>
-    </td>
     <td>
       <button (click)="deleteItem(item)" 
               class="delete">

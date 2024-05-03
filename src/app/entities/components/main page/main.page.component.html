@@ -131,7 +131,7 @@
             <h1>Карточки героев</h1>
         </div>
         <div class="cards">
-            <mat-accordion *ngFor="let item of arr$ | async | filterByLevel : filterForm.value| filterBySkill : filterForm.get('skill')?.value| filterByName : filterForm.get('nameSearch')?.value"
+            <mat-accordion *ngFor="let item of arr | async | filterByLevel : filterForm.value| filterBySkill : filterForm.get('skill')?.value| filterByName : filterForm.get('nameSearch')?.value"
                             class="accordion">
                 <mat-expansion-panel (opened)="panelOpenState = true"
                                     (closed)="panelOpenState = false">

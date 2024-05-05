@@ -18,7 +18,6 @@ export class MainPageComponent {
   public skillsForm: FormGroup;
   public skills: string[];
   public arr: Observable<IAmRealHero[]>; 
-  public panelOpenState: Boolean = false;
 
   constructor(
     private readonly _formBuilder: MainFormService,
@@ -61,14 +60,9 @@ export class MainPageComponent {
    * @description добавление способностей, тут добавлена логика, чтобы нельзя было добавить способности, которые уже есть, после ветвления форма резетается
    */
   public onOkClickSkills(): void {
-    if (this.skillsForm.valid) {
-      if (this.skills.includes(this.skillsForm.value.newSkills)) {
-        alert("Даже индусы не смогут добавить твою способность, дорогой друг!");
-      }
-      else {
-        this.skills.push(this.skillsForm.value.newSkills)
-      }
-      this.skillsForm.reset()
+    if (this.skillsForm.valid && !this.skills.includes(this.skillsForm.value.newSkills)) {
+      this.skills.push(this.skillsForm.value.newSkills);
+      this.skillsForm.reset();
     }
   }
 

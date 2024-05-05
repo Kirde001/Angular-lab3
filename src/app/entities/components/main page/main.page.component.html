@@ -22,7 +22,9 @@
                     <mat-select multiple
                                 formControlName="skills">
                         <mat-option *ngFor="let item of skills" 
-                                    [value]="item">{{ item }}</mat-option>
+                                    [value]="item">
+                            {{ item }}
+                        </mat-option>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field class="form-formatting">
@@ -91,7 +93,9 @@
                         <mat-select multiple 
                                     formControlName="skill">
                             <mat-option *ngFor="let item of skills" 
-                                        [value]="item">{{ item }}</mat-option>
+                                        [value]="item">
+                                {{ item }}
+                            </mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
@@ -133,8 +137,7 @@
         <div class="cards">
             <mat-accordion *ngFor="let item of arr | async | filterByLevel : filterForm.value| filterBySkill : filterForm.get('skill')?.value| filterByName : filterForm.get('nameSearch')?.value"
                             class="accordion">
-                <mat-expansion-panel (opened)="panelOpenState = true"
-                                    (closed)="panelOpenState = false">
+                <mat-expansion-panel>
                     <mat-expansion-panel-header>
                         <mat-panel-title>
                             <span>Имя: {{ item.name }}</span>

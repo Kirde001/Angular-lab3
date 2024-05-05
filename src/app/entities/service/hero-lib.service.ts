@@ -67,7 +67,7 @@ export class HeroService {
    * @return { string[] }
    * @returns возвращает список способностей
    */
-    get skills(): string[] {
+    public get skills(): string[] {
       return this.skillsInitial;
     }
   

@@ -60,10 +60,13 @@ export class MainPageComponent {
    * @description добавление способностей, тут добавлена логика, чтобы нельзя было добавить способности, которые уже есть, после ветвления форма резетается
    */
   public onOkClickSkills(): void {
-    if (this.skillsForm.valid && !this.skills.includes(this.skillsForm.value.newSkills)) {
-      this.skills.push(this.skillsForm.value.newSkills);
-      this.skillsForm.reset();
+    if (!this.skillsForm.valid || this.skills.includes(this.skillsForm.value.newSkills)) {
+      alert('Даже индус с ютуба не смог добавить этот скилл')
     }
+    else {
+      this.skills.push(this.skillsForm.value.newSkills);
+    }
+    this.skillsForm.reset();
   }
 
   /**
